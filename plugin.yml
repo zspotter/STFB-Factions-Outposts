@@ -1,0 +1,14 @@
+name: FactionsOutposts
+author: Zachary Potter (zsp@zachpotter.com)
+main: com.zachpotter.bukkit.stfboutposts.FactionsOutposts
+version: 0
+depend: [Factions]
+commands:
+  outpost:
+    description: "Base command for Factions Outposts"
+    usage: "Usage details: /outpost help"
+  ow:
+    description: "Shortcut for '/outpost warp <name>'"
+    usage: "Usage: /outpost warp <name>"
+  ol:
+    description: "Shortcut for '/outpost list'"
