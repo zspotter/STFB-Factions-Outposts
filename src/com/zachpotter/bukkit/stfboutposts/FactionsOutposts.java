@@ -28,6 +28,8 @@ public class FactionsOutposts extends JavaPlugin {
 
 	private HashMap<Chunk, Outpost> outposts;
 
+	private OutpostBoardManager outpostBoard;
+
 	@Override
 	public void onDisable() {
 		// Nothing to do here.
@@ -56,6 +58,9 @@ public class FactionsOutposts extends JavaPlugin {
 			getCommand("outpost").setExecutor(commander);
 			getCommand("ow").setExecutor(commander);
 			getCommand("ol").setExecutor(commander);
+
+			// Initialize the outpost scoreboard
+			outpostBoard = new OutpostBoardManager(this);
 
 		} else {
 			logInfo("Suitable Factions plugin not found. Get Factions v1.8 or higher!");
@@ -95,7 +100,7 @@ public class FactionsOutposts extends JavaPlugin {
 			return null;
 		}
 		// Create the new outpost
-		Outpost outpost = new Outpost(name, outpostChunk);
+		Outpost outpost = new Outpost(name, outpostChunk, this);
 		// Set outpost's warp to given location
 		outpost.setWarp(warp);
 		// Add the outpost to the map and claim it as a Factions warzone
@@ -139,6 +144,10 @@ public class FactionsOutposts extends JavaPlugin {
 	 */
 	public Collection<Outpost> getOutposts() {
 		return outposts.values();
+	}
+
+	public void updateOutpostBoard(Outpost outpost) {
+		outpostBoard.update(outpost);
 	}
 
 	//Prints msg to console
